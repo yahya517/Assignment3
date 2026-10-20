@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="validation.html">Validation</a>
+        <a href="data.html">Data</a>
+<
+    <h1>Students Data</h1>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by name..."
+    >
+
+    <button type="button" id="sortNameBtn">Sort by Name</button>
+    <button type="button" id="sortAgeBtn">Sort by Age</button>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+
+        <tbody id="studentsTableBody">
+        </tbody>
+    </table>
+
+    <p id="noResults"></p>
+
+    <script>
+        // 1. Array of Objects
+        const students = [
+            { name: "Ahmed", age: 21 },
+            { name: "Sara", age: 19 },
+            { name: "Mohamed", age: 23 },
+            { name: "Mona", age: 20 },
+            { name: "Ali", age: 18 }
+        ];
+
+        // 2. Get HTML elements
+        const searchInput = document.querySelector("#searchInput");
+        const sortNameBtn = document.querySelector("#sortNameBtn");
+        const sortAgeBtn = document.querySelector("#sortAgeBtn");
+        const tableBody = document.querySelector("#studentsTableBody");
+        const noResults = document.querySelector("#noResults");
+
+        // 3. Variables for the current search and sorting
+        let searchText = "";
+        let sortBy = "";
+        let sortDirection = 1;
+
+        // 4. Display the students
+        function renderStudents() {
+            // Start with all students
+            let displayedStudents = students.filter(student => {
+                return student.name.toLowerCase().includes(searchText);
+            });
+
+            // Sort by name or age if requested
+            if (sortBy === "name") {
+                displayedStudents.sort((a, b) => {
+                    return sortDirection * a.name.localeCompare(b.name);
+                });
+            } else if (sortBy === "age") {
+                displayedStudents.sort((a, b) => {
+                    return sortDirection * (a.age - b.age);
+                });
+            }
+
+            // Clear the old table rows
+            tableBody.textContent = "";
+
+            // Create a row for each student
+            displayedStudents.forEach(student => {
+                const row = document.createElement("tr");
+
+                const nameCell = document.createElement("td");
+                nameCell.textContent = student.name;
+
+                const ageCell = document.createElement("td");
+                ageCell.textContent = student.age;
+
+                row.appendChild(nameCell);
+                row.appendChild(ageCell);
+
+                tableBody.appendChild(row);
+            });
+
+            // Show a message if nothing matches the search
+            if (displayedStudents.length === 0) {
+                noResults.textContent = "No students found.";
+            } else {
+                noResults.textContent = "";
+            }
+        }
+
+        // 5. Live search: runs whenever the user types
+        searchInput.addEventListener("input", () => {
+            searchText = searchInput.value.trim().toLowerCase();
+            renderStudents();
+        });
+
+        // 6. Sort by name
+        sortNameBtn.addEventListener("click", () => {
+            if (sortBy === "name") {
+                sortDirection *= -1;
+            } else {
+                sortBy = "name";
+                sortDirection = 1;
+            }
+
+            renderStudents();
+        });
+
+        // 7. Sort by age
+        sortAgeBtn.addEventListener("click", () => {
+            if (sortBy === "age") {
+                sortDirection *= -1;
+            } else {
+                sortBy = "age";
+                sortDirection = 1;
+            }
+
+            renderStudents();
+        });
+
+        // 8. Display the data when the page first opens
+        renderStudents();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login site</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav><a href="validation.html">Validation</a>
+        <a href="data.html">Data</a>
+<
+<main>
+    <div class="layout">
+
+        <section class="component login-card">
+            <h1>Welcome Back</h1>
+            <p>Sign in to your account</p>
+
+            <form id ="registrationForm">
+
+               <label for="name">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    
+                    autocomplete="name"
+                    
+                ><p id ="nameError"></p>                                                   
+               <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    
+                    autocomplete="email"
+                    
+                ><p id ="emailError"></p>
+
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    
+                    autocomplete="current-password"
+                   
+                ><p id ="passwordError"></p>
+                <label for="confirmPassword">confirmPassword</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    
+                   
+                ><p id ="confirmPasswordError"></p>
+                 <label for="age">Age</label>
+                <input
+                    type="number"
+                    id="age"
+                   
+                   
+                ><p id ="ageError"></p>
+
+
+
+<label for="account">Account Type</label>
+
+<select id="account" name="account" >
+    <option value="">choose account type</option>
+    <option value="student">student</option>
+    <option value="personal">personal</option>
+    
+</select>
+
+                <button type="submit">Sign In</button>
+            </form>
+        </section>
+
+       
+<section class="component">
+    <h2>Notification</h2>
+
+    <div class="alert" >
+      make sure for your password!!
+    </div>
+</section>
+
+        <section class="component">
+            <h2> Window</h2>
+            <p>Open a window to view more information.</p>
+            <a href="#login-modal">Open Modal</a>
+        </section>
+
+    </div>
+    
+<div class="modal" id="login-modal">
+    <div class="modal-content">
+        <a href="#" class="modal-close" aria-label="Close modal">
+            &times;
+        </a>
+
+        <h2>Welcome</h2>
+        <p>make sure you are happye.</p>
+    </div>
+</div>
+
+</main>
+
+ <script src="validation.js"></script>
+</body>
+</html>
